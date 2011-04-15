@@ -1,0 +1,29 @@
+This is the code for the Heritage Health Prize challenge:
+http://www.heritagehealthprize.com/c/hhp
+evaluation:
+http://www.heritagehealthprize.com/c/hhp/Details/Evaluation
+data description:
+http://www.heritagehealthprize.com/c/hhp/Data
+forum:
+http://www.heritagehealthprize.com/forums/default.aspx?g=topics&f=42
+
+
+SETUP
+1) Download data (http://www.heritagehealthprize.com/c/hhp/Data) and unzip in this directory as ./HHP_release1
+
+2) Create directory ./working_data
+
+3) run src/process.rb; it will create working_data/member_features.csv
+
+4) choose your code for running the model, e.g. model_caret.R
+
+5) ??
+
+6) Profit!  ($3MM!)
+
+
+OPTIONAL -- setup DB
+You can load the source data into postgres, if you choose to browse the data that way.
+1) createdb heritage_prize
+
+2) create schema and load data using the SQL in src/sql/create_schema.sql
