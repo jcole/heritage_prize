@@ -1,4 +1,3 @@
-
 -- relationships
 select m.ageatfirstclaim, count(*), avg(dh.daysinhospital_y2), stddev(dh.daysinhospital_y2), avg(log(dh.daysinhospital_y2 + 1)), stddev(log(dh.daysinhospital_y2 + 1))
 from days_in_hospital_y2 dh, members m
@@ -6,28 +5,10 @@ where m.memberid = dh.memberid
 group by 1
 order by 1
 
-select specialty, count(*), avg(claim_days), stddev(claim_days ), avg(log(claim_days + 1)), stddev(log(claim_days + 1))
-from (
-   select specialty, 
-	CASE WHEN lengthofstay='12-26 weeks' THEN 12*7
-             WHEN lengthofstay='1- 2 weeks' THEN 7
-             WHEN lengthofstay='1 day' THEN 1
-             WHEN lengthofstay='2- 4 weeks' THEN 2
-             WHEN lengthofstay='26+ weeks' THEN 26*7
-             WHEN lengthofstay='2 days' THEN 2*7
-             WHEN lengthofstay='3 days' THEN 3*7
-             WHEN lengthofstay='4- 8 weeks' THEN 4*7
-             WHEN lengthofstay='4 days' THEN 4
-             WHEN lengthofstay='5 days' THEN 5
-             WHEN lengthofstay='6 days' THEN 6
-             WHEN lengthofstay='8-12 weeks' THEN 8*7
-             ELSE 0
-        END as claim_days
-    from claims_y1
-    ) claim_summary
+select c.specialty, count(*), avg(l.days), stddev(l.days), avg(log(l.days + 1)), stddev(log(l.days + 1))
+from claims_y1 c, length_of_stay l
 group by 1
 order by 1
-
 
 
 --days in h. y2 by specialty in claims y1
